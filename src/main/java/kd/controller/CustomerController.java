@@ -20,7 +20,7 @@ public class CustomerController {
   @Autowired	 
   CustomerService cs;
   
-  @PostMapping("/saveCustomer")
+  @PostMapping("/save-customer")
   public ResponseEntity<?> saveCustomer(@RequestBody Customer c)
   {
 	boolean b=cs.save(c);
@@ -29,21 +29,21 @@ public class CustomerController {
 	else
 		return ResponseEntity.ok("Record Not Saved,Please check..");
   }
-  @GetMapping("/Customer/{id}")
+  @GetMapping("/customer/{id}")
   public ResponseEntity<Customer> getCustomer(@PathVariable int id)
   {
 	Customer c=cs.get(id);
 	return ResponseEntity.ok().body(c);
   }
   
-  @GetMapping("/AllCustomer")
+  @GetMapping("/customers")
   public ResponseEntity<List<Customer>> getAllCustomer()
   {
 	List<Customer> lt=cs.getAll();
 	return ResponseEntity.ok().body(lt);
   }
   
-  @PutMapping("/updateCustomer/{id}")
+  @PutMapping("/customer/{id}")
   public ResponseEntity<?> updateCustomer(@PathVariable int id,@RequestBody Customer c)
   {
 	boolean b=cs.update(id, c);
@@ -53,7 +53,7 @@ public class CustomerController {
 		return ResponseEntity.ok("Record Doesn't Exist , Please check again");
   }
   
-  @DeleteMapping("/deleteCustomer/{id}")
+  @DeleteMapping("/customer/{id}")
   public ResponseEntity<?> deleteCustomer(@PathVariable int id)
   {
 	boolean b=cs.delete(id);
